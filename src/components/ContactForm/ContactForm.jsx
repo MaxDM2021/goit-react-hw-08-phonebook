@@ -2,6 +2,11 @@
 import { useState } from 'react';
 import './ContactFormStyles.scss';
 import shortid from 'shortid';
+import Notiflix from 'notiflix';
+
+import { addContacts } from '../redux/contacts/contactsOperations';
+import { getContacts } from '../redux/contacts/contactsReduser';
+import { useDispatch, useSelector } from 'react-redux';
 
 const startState = {
   name: '',
@@ -11,6 +16,8 @@ const startState = {
 export default function ContactForm ({onSubmit}) {
 
   const [{name, number}, setState] = useState(startState);
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
 
 
@@ -30,10 +37,32 @@ export default function ContactForm ({onSubmit}) {
   };
 
 
+  const addCont = (name, number) => {
+    const newContact = {
+      id: shortid.generate(),
+      name,
+      number,
+    };
+
+    if (contacts.some(contact => contact.name === newContact.name)) {
+      Notiflix.Notify.warning(`❌ ${newContact.name} is already is contacts`, {
+        timeout: 3000,
+      });
+
+      return false;
+    }
+    dispatch(addContacts(newContact));
+
+    return true;
+  };
+
+
+
+
   const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit(name, number);
+    addCont(name, number);
     setState({ name: '', number: '' });
   };
 
