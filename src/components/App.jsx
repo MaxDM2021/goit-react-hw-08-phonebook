@@ -1,19 +1,19 @@
 import { useEffect, lazy } from 'react';
 
-
 import { useDispatch } from 'react-redux';
 
 import { Route, Routes } from 'react-router-dom';
 import Container from './Container';
-import AppBar from './AppBar';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivatRoute';
 
 // import HomeView from './views/HomeView';
 // import RegisterView from './views/RegisterView';
 // import LoginView from './views/LoginView';
 // import ContactsView from './views/ContactsView';
 
-
 import { authOperations } from './redux/auth';
+import { useAuth } from './hooks/useAuth';
 
 import './App.scss';
 
@@ -24,24 +24,56 @@ const ContactsView = lazy(() => import('./views/ContactsView'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <b> Fetching user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Container />}>
+        <Route index element={<HomeView />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              component={RegisterView}
+              redirectTo={'/contacts'}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute
+              component={LoginView}
+              redirectTo={'/contacts'}
+            />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute component={ContactsView} redirectTo={'/login'} />
+          }
+        />
 
-    <Container>
-      <AppBar />
-      <Routes>
-        <Route exact path="/" component={<HomeView/>} />
-        <Route path="/register" component={<RegisterView/>} />
-        <Route path="/login" component={<LoginView/>} />
-        <Route path="/contacts" component={<ContactsView/>}/>
-      </Routes>
-    </Container>
-
+      </Route>
+    </Routes>
   );
+
+  // <Container>
+  //   <AppBar />
+  //   <Routes>
+  //     <Route exact path="/" component={HomeView} />
+  //     <Route path="register" component={RegisterView} />
+  //     <Route path="login" component={LoginView} />
+  //     <Route path="contacts" component={ContactsView}/>
+  //   </Routes>
+  // </Container>
 }
 
 // ==== Старая версия на классах ====

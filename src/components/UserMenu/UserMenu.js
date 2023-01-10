@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authOperations } from '../redux/auth';
+import { authOperations } from '../redux/auth';
+import { getUseremail } from "../redux/auth/auth-selectors"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs";
 // import defaultAvatar from './default-avatar.png';
 
@@ -19,7 +20,7 @@ const styles = {
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const email = useSelector(authSelectors.getUseremail);
+  const email = useSelector(getUseremail);
   
 
   return (

@@ -13,14 +13,15 @@ import {
 
 import { contactsReducer } from './contacts/contactsReduser';
 import { filterReducer } from './filterSlice';
-
+import  authReducer  from "./auth/auth-slice"
 
 
 
 export const store = configureStore({
   reducer: {
   contact: contactsReducer,
-  filter: filterReducer, 
+  filter: filterReducer,
+  auth: authReducer,
 },
   middleware(getDefaultMiddleware) {
 
