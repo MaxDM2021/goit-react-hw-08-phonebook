@@ -16,7 +16,22 @@ const styles = {
     fontWeight: 700,
     marginRight: 12,
   },
+  link: {
+    display: 'inline-block',
+    textDecoration: 'none',
+    padding: 5,
+    fontWeight: 700,
+    color: '#2A363B',
+    backgroundColor: 'inherit',
+    borderRadius: '4px',
+  },
+  activeLink: {
+    color: '#E84A5F',
+  },
 };
+
+
+
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -27,7 +42,7 @@ export default function UserMenu() {
     <div style={styles.container}>
       <img src={BsFillEmojiSunglassesFill} alt="" width="32" style={styles.avatar} />
       <span style={styles.name}>Welcome, {email}</span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <button style={styles.link} type="button" onClick={() => dispatch(authOperations.logOut())}>
         Log out
       </button>
     </div>

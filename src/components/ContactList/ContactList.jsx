@@ -26,10 +26,10 @@ const ContactList = () => {
   
   return (
     <ul className="ContactList">
-      {finishContacts.map(({ id, name, phone }) => (
+      {finishContacts.map(({ id, name, number}) => (
         <li key={id} className="ContactList__item">
           <p className="TodoList__text">
-            {name}: {phone}
+            {name}: {number}
           </p>
           <button
             type="button"

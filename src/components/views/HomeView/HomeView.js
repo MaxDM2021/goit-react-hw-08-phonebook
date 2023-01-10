@@ -1,26 +1,27 @@
 import React from 'react';
+import "./HomeStyles.scss"
 
 const styles = {
   container: {
     minHeight: 'calc(100vh - 50px)',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    margin: '50px'
+    
   },
   title: {
-    fontWeight: 500,
+    fontWeight: 700,
     fontSize: 48,
     textAlign: 'center',
+    color: '#2A363B',
+   
   },
 };
 
 const HomeView = () => (
-  <div style={styles.container}>
+  <div style={styles.container} className="Homepage ">
     <h1 style={styles.title}>
-    Your favorite phone-data storage 
-      <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
-      </span>
+       PHONE-DATA STORAGE
     </h1>
   </div>
 );

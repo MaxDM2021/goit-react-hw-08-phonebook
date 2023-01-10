@@ -17,9 +17,9 @@ import { useAuth } from './hooks/useAuth';
 
 import './App.scss';
 
-const HomeView = lazy(() => import('./views/HomeView'));
-const RegisterView = lazy(() => import('./views/RegisterView'));
-const LoginView = lazy(() => import('./views/LoginView'));
+const HomeView = lazy(() => import('./views/HomeView/HomeView'));
+const RegisterView = lazy(() => import('./views/RegisterView/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView/LoginView'));
 const ContactsView = lazy(() => import('./views/ContactsView'));
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
       <Route path="/" element={<Container />}>
         <Route index element={<HomeView />} />
         <Route
-          path="/register"
+          path="register"
           element={
             <RestrictedRoute
               component={RegisterView}
