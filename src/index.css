@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./components/views/HomeView/img/homepage-default.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {
