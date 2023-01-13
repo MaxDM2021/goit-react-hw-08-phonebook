@@ -21,6 +21,8 @@ const HomeView = lazy(() => import('./views/HomeView/HomeView'));
 const RegisterView = lazy(() => import('./views/RegisterView/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView/LoginView'));
 const ContactsView = lazy(() => import('./views/ContactsView'));
+const NoFound = lazy(() => import('./views/NoFound/NoFound'));
+const UploadView = lazy(() => import('./views/UploadView/UploadView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -48,10 +50,7 @@ export default function App() {
         <Route
           path="/login"
           element={
-            <RestrictedRoute
-              component={LoginView}
-              redirectTo={'/contacts'}
-            />
+            <RestrictedRoute component={LoginView} redirectTo={'/contacts'} />
           }
         />
         <Route
@@ -60,21 +59,20 @@ export default function App() {
             <PrivateRoute component={ContactsView} redirectTo={'/login'} />
           }
         />
-
+                <Route
+          path="/upload"
+          element={
+            <PrivateRoute component={UploadView} redirectTo={'/login'} />
+          }
+        />
+           <Route path="*" element={<NoFound />} />
       </Route>
     </Routes>
   );
+        }
 
-  // <Container>
-  //   <AppBar />
-  //   <Routes>
-  //     <Route exact path="/" component={HomeView} />
-  //     <Route path="register" component={RegisterView} />
-  //     <Route path="login" component={LoginView} />
-  //     <Route path="contacts" component={ContactsView}/>
-  //   </Routes>
-  // </Container>
-}
+
+
 
 // ==== Старая версия на классах ====
 // class App extends Component {

@@ -36,13 +36,19 @@ const styles = {
 export default function UserMenu() {
   const dispatch = useDispatch();
   const email = useSelector(getUseremail);
+
+
+  const userOut = async () => {
+    await dispatch(authOperations.logOut());
+    window.localStorage.removeItem('persist:auth');
+};
   
 
   return (
     <div style={styles.container}>
       <img src={BsFillEmojiSunglassesFill} alt="" width="32" style={styles.avatar} />
       <span style={styles.name}>Welcome, {email}</span>
-      <button style={styles.link} type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <button style={styles.link} type="button" onClick={userOut}>
         Log out
       </button>
     </div>

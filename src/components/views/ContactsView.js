@@ -45,11 +45,11 @@ export default function ContactsView() {
 
   return (
     <div className="Phonebook">
+       {isLoading && !error && <Loader />}
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addCont} />
       <h2 className="TitleContacts">Contacts</h2>
       <Filter />
-      {isLoading && !error && <Loader />}
       <ContactList />
     </div>
   );

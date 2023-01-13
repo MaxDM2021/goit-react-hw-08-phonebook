@@ -7,9 +7,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./components/views/HomeView/img/homepage-default.jpg');
+  /* background-image: url('./components/views/HomeView/img/homepage-default.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+
+  background-color: #d3e0eb;
 }
 
 code {
