@@ -29,9 +29,7 @@ return (
     <NavLink to="/contacts" exact style={styles.link} activeStyle={styles.activeLink}>
       Contacts
     </NavLink>
-    <NavLink to="/upload" exact style={styles.link} activeStyle={styles.activeLink}>
-      Douwnload
-    </NavLink>
+
 </>
 }
   </nav>
